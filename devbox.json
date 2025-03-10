@@ -1,0 +1,22 @@
+{
+  "packages": [
+    "terraform@latest",
+    "terraform-ls@latest",
+    "tflint@latest",
+    "checkov@latest",
+    "trivy@latest",
+    "kubectl@latest",
+    "pre-commit@latest",
+    "shellcheck@latest",
+    "just@latest",
+    "kube-linter@latest",
+    "chart-testing@latest",
+    "kubernetes-helm@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "pre-commit install",
+      "tflint --init"
+    ]
+  }
+}
