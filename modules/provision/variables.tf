@@ -22,7 +22,6 @@ variable "deployments" {
   default = [
     { name = "argocd", namespace = "argocd", chart_name = "argo-cd" },
     { name = "kyverno", namespace = "kyverno", chart_name = "kyverno" },
-    { name = "kyverno-policies", namespace = "kyverno", chart_name = "kyverno-policies" },
   ]
   description = "List of Helm charts to deploy with their respective namespaces and chart names"
 }

@@ -22,6 +22,7 @@ lint:
 # Test infra
 test:
     terraform test
+    # todo: run helm tests
 
 # Apply
 apply:

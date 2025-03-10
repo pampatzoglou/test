@@ -65,6 +65,26 @@ module "deployments" {
   ]
 }
 
+module "kyverno-policies" {
+  source       = "./helm"
+  release_name = "kyverno-policies"
+  # Use local chart file with version from centralized config
+  chart           = "${path.module}/resources/kyverno/kyverno-policies-${local.effective_chart_versions}.tgz"
+  namespace       = "kyverno"
+  atomic          = true
+  cleanup_on_fail = true
+  wait            = true
+  wait_for_jobs   = true
+  force_update    = true # Enable server-side apply for CRDs
+
+
+  depends_on = [
+    module.prometheus-crds,
+    module.deployments,
+    kubernetes_namespace.deployment_namespace
+  ]
+}
+
 # # Create ArgoCD Application resources for app of apps pattern
 # resource "kubernetes_manifest" "argocd_applications" {
 #   for_each = { for repo in var.argocd_app_of_apps_repos : repo.name => repo }
